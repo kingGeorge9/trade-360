@@ -1,8 +1,12 @@
+import { Suspense } from "react";
 import { Card } from "@/components";
 import Filters from "@/components/Filters";
 import Sort from "@/components/Sort";
 import { parseFilterParams } from "@/lib/utils/query";
 import { getAllProducts } from "@/lib/actions/product";
+
+// Force dynamic rendering since we use searchParams
+export const dynamic = 'force-dynamic';
 
 type SearchParams = Record<string, string | string[] | undefined>;
 
@@ -48,7 +52,9 @@ export default async function ProductsPage({
     <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <header className="flex items-center justify-between py-6">
         <h1 className="text-heading-3 text-dark-900">New ({totalCount})</h1>
-        <Sort />
+        <Suspense fallback={<div className="h-10 w-48 animate-pulse rounded bg-light-200" />}>
+          <Sort />
+        </Suspense>
       </header>
 
       {activeBadges.length > 0 && (
@@ -65,7 +71,9 @@ export default async function ProductsPage({
       )}
 
       <section className="grid grid-cols-1 gap-6 md:grid-cols-[240px_1fr]">
-        <Filters />
+        <Suspense fallback={<div className="h-96 w-full animate-pulse rounded bg-light-200" />}>
+          <Filters />
+        </Suspense>
         <div>
           {products.length === 0 ? (
             <div className="rounded-lg border border-light-300 p-8 text-center">

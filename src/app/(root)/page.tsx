@@ -1,12 +1,12 @@
 import React from "react";
 import { Card } from "@/components";
 import Hero from "@/components/Hero";
-import { getCurrentUser } from "@/lib/auth/actions";
 import { getAllProducts } from "@/lib/actions/product";
 
-const Home = async () => {
-  const user = await getCurrentUser();
+// Force dynamic rendering since we use auth
+export const dynamic = 'force-dynamic';
 
+const Home = async () => {
   // Fetch latest products from database
   const { products: dbProducts } = await getAllProducts({
     genderSlugs: [],
@@ -19,8 +19,6 @@ const Home = async () => {
     page: 1,
     limit: 4,
   });
-
-  console.log("USER:", user);
 
   return (
     <>

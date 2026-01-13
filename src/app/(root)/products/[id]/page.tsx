@@ -8,7 +8,7 @@ import {
   ReviewSection,
   FavoriteButton,
 } from "@/components";
-import { Heart, ShoppingBag, Star } from "lucide-react";
+import { ShoppingBag, Star } from "lucide-react";
 import ColorSwatches from "@/components/ColorSwatches";
 import {
   getProduct,

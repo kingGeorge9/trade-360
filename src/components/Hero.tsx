@@ -18,12 +18,10 @@ const shoeImages = [
 export default function Hero() {
   const [scrollY, setScrollY] = useState(0);
   const [randomShoe, setRandomShoe] = useState(shoeImages[0]);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     // Set random shoe only on client side after mount
     setRandomShoe(shoeImages[Math.floor(Math.random() * shoeImages.length)]);
-    setMounted(true);
   }, []);
 
   useEffect(() => {

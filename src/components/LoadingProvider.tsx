@@ -19,10 +19,8 @@ export default function LoadingProvider({
     setIsNavigating(true);
     setShowLoading(false);
 
-    let displayTimeout: NodeJS.Timeout;
-
     // Show loading indicator only if navigation takes more than 2 seconds
-    displayTimeout = setTimeout(() => {
+    const displayTimeout = setTimeout(() => {
       if (isNavigating) {
         setShowLoading(true);
       }
@@ -40,7 +38,7 @@ export default function LoadingProvider({
       setIsNavigating(false);
       setShowLoading(false);
     };
-  }, [pathname, searchParams]);
+  }, [pathname, searchParams, isNavigating]);
 
   return (
     <>
